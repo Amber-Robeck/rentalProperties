@@ -14,6 +14,15 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/:id", async (req, res) => {
+    try {
+        const singleApartment = await Apartment.findOne({ _id: req.params.id });
+        res.status(200).json(singleApartment);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 router.post("/", async (req, res) => {
     const newApartment = new Apartment(req.body);
     try {
@@ -42,6 +51,7 @@ router.delete("/:id", async (req, res) => {
         res.status(500).json(err);
     }
 });
+
 
 
 export default router;
