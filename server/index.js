@@ -6,6 +6,10 @@ import routes from "./routes/index.js"
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 5000;
+
+//middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(routes);
 
 const connect = async () => {
