@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(routes);
+app.use((err, req, res, next) => {
+    const errorStatus = err.status || 500;
+    const errorMessage = err.message || "Something went wrong";
+    return res.status(errorStatus).json(errorMessage);
+});
 
 const connect = async () => {
     try {
