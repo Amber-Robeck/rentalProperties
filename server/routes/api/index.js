@@ -1,8 +1,8 @@
 import express from "express";
-import apartments from "./apartments.js"
+import buildings from "./buildings.js"
 
 const router = express.Router();
 // api/
-router.use("/apartments", apartments);
+router.use("/buildings", buildings);
 
 export default router;
