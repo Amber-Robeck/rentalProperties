@@ -33,11 +33,10 @@ export const createUser = async (req, res, next) => {
     }
 };
 
-export const loginUser = async (res, req, next) => {
+export const loginUser = async (req, res, next) => {
     try {
-        console.log(req)
         const user = await User.findOne({ username: req.body.username });
-        // if (!user) return res.status(400).json("Invalid credentials");
+        if (!user) return res.status(400).json("Invalid credentials");
 
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
         if (!correctPassword) return res.status(400).json("Invalid credentials");
