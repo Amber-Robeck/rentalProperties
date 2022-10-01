@@ -53,6 +53,6 @@ export const loginUser = async (req, res, next) => {
     }
 };
 
-export const updateUser = async (req, res, next) => { };
+export const updateUser = async (req, res, next) => { res.json("Authenticated user") };
 
 export const deleteUser = async (req, res, next) => { };
