@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const getAllUsers = async (req, res, next) => {
     try {
@@ -41,9 +42,12 @@ export const loginUser = async (req, res, next) => {
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
         if (!correctPassword) return res.status(400).json("Invalid credentials");
 
+        const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET)
         //Destructuring user to send back user without password or isAdmin
         const { password, isAdmin, ...restOfUser } = user._doc;
-        res.status(200).json({ ...restOfUser });
+        res
+            .cookie("access_token", token, { httpOnly: true })
+            .status(200).json({ ...restOfUser });
     } catch (err) {
         next(err);
     }
