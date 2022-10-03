@@ -10,7 +10,6 @@ router.post("/", createUser);
 router.post("/login", loginUser);
 
 // Verified user routes
-
 router.get("/:id", userVerify, getUser);
 router.put("/:id", userVerify, updateUser);
 
