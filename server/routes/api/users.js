@@ -3,23 +3,22 @@ import { getAllUsers, getUser, createUser, updateUser, deleteUser, loginUser, to
 import { adminVerify, userVerify } from "../../utils/verify.js";
 const router = express.Router();
 
-// api/Users
+// api/users
 
-router.get("/", adminVerify, getAllUsers);
-
-router.get("/:id", userVerify, getUser);
-
+// NO AUTH routes
 router.post("/", createUser);
-
 router.post("/login", loginUser);
 
+// Verified user routes
+
+router.get("/:id", userVerify, getUser);
 router.put("/:id", userVerify, updateUser);
 
-//TODO: Toggle active instead of deleting entirely
-router.delete("/:id", userVerify, deleteUser);
-
+// Toggle active instead of deleting entirely
 router.put("/delete/:id", userVerify, toggleActive)
 
-
+// ADMIN routes
+router.get("/", adminVerify, getAllUsers);
+router.delete("/:id", adminVerify, deleteUser);
 
 export default router;
