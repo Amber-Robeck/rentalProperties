@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+// Get all users-admin route only!
 export const getAllUsers = async (req, res, next) => {
     try {
         const allUsers = await User.find({});
@@ -11,6 +12,7 @@ export const getAllUsers = async (req, res, next) => {
     }
 };
 
+// Get single user-verified user route! 
 export const getUser = async (req, res, next) => {
     try {
         const singleUser = await User.findOne({ _id: req.params.id });
@@ -20,6 +22,7 @@ export const getUser = async (req, res, next) => {
     }
 };
 
+// Post create user, no auth route!
 export const createUser = async (req, res, next) => {
     try {
         const salt = bcrypt.genSaltSync(10);
@@ -41,6 +44,7 @@ export const createUser = async (req, res, next) => {
     }
 };
 
+// Post login user, no auth route!
 export const loginUser = async (req, res, next) => {
     try {
         const user = await User.findOne({ username: req.body.username });
@@ -60,6 +64,7 @@ export const loginUser = async (req, res, next) => {
     }
 };
 
+// Put update user, verified user route!
 export const updateUser = async (req, res, next) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
@@ -69,6 +74,7 @@ export const updateUser = async (req, res, next) => {
     }
 };
 
+// Delete user, admin only route!
 export const deleteUser = async (req, res, next) => {
     try {
         const deletedUser = await User.findByIdAndDelete(req.params.id);
@@ -78,15 +84,14 @@ export const deleteUser = async (req, res, next) => {
     }
 };
 
+// Put user, toggle active boolean, verified user route!
 export const toggleActive = async (req, res, next) => {
     try {
         const inactiveUser = await User.findByIdAndUpdate(
             { _id: req.params.id },
             [{ "$set": { "isActive": { "$eq": [false, "$isActive"] } } }],
             { new: true });
-
         res.status(200).json({ message: `User ${inactiveUser.username} deleted` });
-
     } catch (err) {
         next(err);
     }
