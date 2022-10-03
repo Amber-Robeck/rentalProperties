@@ -24,20 +24,18 @@ export const userVerify = (req, res, next) => {
             res
                 .status(401)
                 .json("Not allowed")
-        }
+        };
     });
 };
 
 export const adminVerify = (req, res, next) => {
     jwtVerify(req, res, () => {
         if (req.user.isAdmin) {
-            console.log(req.user);
             next();
-            // console.log("this")
         } else {
             res
                 .status(401)
                 .json("Not allowed")
-        }
+        };
     });
 };
