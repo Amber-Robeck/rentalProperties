@@ -1,11 +1,11 @@
 import express from "express";
 import { getAllUsers, getUser, createUser, updateUser, deleteUser, loginUser } from "../../controllers/Users.js";
-import { userVerify } from "../../utils/verify.js";
+import { adminVerify, userVerify } from "../../utils/verify.js";
 const router = express.Router();
 
 // api/Users
 
-router.get("/", getAllUsers);
+router.get("/", adminVerify, getAllUsers);
 
 router.get("/:id", getUser);
 
