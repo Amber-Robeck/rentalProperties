@@ -19,7 +19,12 @@ const BuildingSchema = new mongoose.Schema({
         required: true
     },
     rooms: {
-        type: [String]
+        type: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Apartment',
+            },
+        ]
     }
 });
 
