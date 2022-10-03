@@ -78,28 +78,13 @@ export const deleteUser = async (req, res, next) => {
     }
 };
 
-// export const toggleActive = async (req, res, next) => {
-//     try {
-//         const inactiveUser = await User.findOne({ _id: req.params.id }, { new: true }, function (err, user) {
-//             if (err) {
-//                 res.send("Something went wrong")
-//             }
-//             user.isActive = !user.isActive;
-//             user.save();
-//         });
-//         res.status(200).json({ message: `User ${inactiveUser.username} deleted` });
-//     } catch (err) {
-//         next(err);
-//     }
-// };
-
 export const toggleActive = async (req, res, next) => {
     try {
-        const inactiveUser = await User.findByIdAndUpdate({ _id: req.params.id }, [{ "$set": { "isActive": { "$eq": [false, "$isActive"] } } }], { new: true })
-        // const inactiveUser = await User.updateOne(
-        //     { _id: req.params.id },
-        //     [{ "$set": { "isActive": { "$eq": [false, "$isActive"] } } }]
-        // )
+        const inactiveUser = await User.findByIdAndUpdate(
+            { _id: req.params.id },
+            [{ "$set": { "isActive": { "$eq": [false, "$isActive"] } } }],
+            { new: true });
+
         res.status(200).json({ message: `User ${inactiveUser.username} deleted` });
 
     } catch (err) {
