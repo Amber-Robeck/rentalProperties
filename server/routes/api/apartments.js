@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllApartments, getApartment, createApartment, updateApartment, deleteApartment } from "../../controllers/apartments.js";
+import { getAllApartments, getApartment, createApartment, updateApartment, deleteApartment, toggleRented } from "../../controllers/apartments.js";
 import { userVerify, adminVerify } from "../../utils/verify.js";
 
 const router = express.Router();
@@ -13,9 +13,9 @@ router.get("/:id", userVerify, getApartment);
 //Admin only routes
 router.post("/:buildingId", adminVerify, createApartment);
 router.put("/:id", adminVerify, updateApartment);
-
-//TODO: Toggle active instead of deleting entirely
 router.delete("/:id", adminVerify, deleteApartment);
+//toggle rented boolean
+router.put("/rented/:id", toggleRented)
 
 
 

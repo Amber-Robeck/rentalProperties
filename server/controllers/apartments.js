@@ -63,3 +63,17 @@ export const deleteApartment = async (req, res, next) => {
         next(err);
     }
 };
+
+
+// Put apartment, toggle rented boolean, admin only route!
+export const toggleRented = async (req, res, next) => {
+    try {
+        const isRented = await Apartment.findByIdAndUpdate(
+            { _id: req.params.id },
+            [{ "$set": { "isRented": { "$eq": [false, "$isRented"] } } }],
+            { new: true });
+        res.status(200).json({ message: `Apartment ${isRented.roomNumber} updated` });
+    } catch (err) {
+        next(err);
+    }
+};
