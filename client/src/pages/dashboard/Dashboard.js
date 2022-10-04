@@ -3,8 +3,9 @@ import SidePanel from '../../components/sidePanel/SidePanel.js';
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className='dashboard'>
             <SidePanel />
+            <div className='main-container'>main</div>
         </div>
     )
 }

@@ -1,15 +1,33 @@
-.App {
-  text-align: center;
+/* DASHBOARD STYLES */
+.dashboard{
+  display:flex;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* SIDE PANEL STYLES */
+.side-panel{
+flex: 1;
+border-right: 0.5px solid lightgrey;
+min-height: 100vh;
+}
+
+.main-logo{
+  height: 3rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
+.logo{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.center-list{
+  padding-left: .5rem;
+}
+.center-list ul{
+  list-style: none;
+}
+/* END OF SIDE PANEL STYLES */
+.main-container{
+  background-color: bisque;
+  flex: 6;
+}
