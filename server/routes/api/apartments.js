@@ -15,7 +15,7 @@ router.post("/:buildingId", adminVerify, createApartment);
 router.put("/:id", adminVerify, updateApartment);
 router.delete("/:id", adminVerify, deleteApartment);
 //toggle rented boolean
-router.put("/rented/:id", toggleRented)
+router.put("/rented/:id", adminVerify, toggleRented)
 
 
 

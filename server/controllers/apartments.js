@@ -42,7 +42,7 @@ export const createApartment = async (req, res, next) => {
 export const updateApartment = async (req, res, next) => {
     try {
         const updatedApartment = await Apartment.findByIdAndUpdate(
-            req.params.apartmentId,
+            req.params.id,
             { $set: req.body },
             { new: true }
         );
