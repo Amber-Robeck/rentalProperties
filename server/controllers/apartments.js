@@ -10,7 +10,16 @@ export const getAllApartments = async (req, res, next) => {
         next(err);
     }
 };
-export const getApartment = async (req, res, next) => { };
+export const getApartment = async (req, res, next) => {
+    try {
+        const singleApartment = await Apartment.findOne(
+            { _id: req.params.id }
+        );
+        res.status(200).json(singleApartment);
+    } catch (err) {
+        next(err);
+    }
+};
 
 // Post new apartment, needs buildingId in params, admin only route!
 export const createApartment = async (req, res, next) => {
