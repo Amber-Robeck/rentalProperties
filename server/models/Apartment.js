@@ -17,6 +17,21 @@ const ApartmentSchema = new mongoose.Schema({
     address: {
         type: String,
         required: true
+    },
+    rentPrice: {
+        type: Number,
+    },
+    isRented: {
+        type: Boolean,
+        default: true
+    },
+    currentOccupant: {
+        type: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ]
     }
 });
 
