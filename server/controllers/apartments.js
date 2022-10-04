@@ -39,5 +39,20 @@ export const createApartment = async (req, res, next) => {
         next(err);
     }
 };
-export const updateApartment = async (req, res, next) => { };
+export const updateApartment = async (req, res, next) => {
+    try {
+        const updatedApartment = await Apartment.findByIdAndUpdate(
+            req.params.apartmentId,
+            { $set: req.body },
+            { new: true }
+        );
+
+        if (!updatedApartment) {
+            res.status(404).json("Unable to locate that apartment");
+        }
+        res.status(200).json(`Apartment ${updatedApartment.roomNumber} has been updated`);
+    } catch (err) {
+        next(err);
+    }
+};
 export const deleteApartment = async (req, res, next) => { };
