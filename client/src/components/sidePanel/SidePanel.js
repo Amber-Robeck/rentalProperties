@@ -6,6 +6,7 @@ const SidePanel = () => {
       <div className='main-logo'><span className='logo'>Rental Properties</span></div>
       <div className='center-list'>
         <ul>
+          <p className='li-label'>Main</p>
           <li>
             <p>Dashboard</p>
           </li>
@@ -14,6 +15,13 @@ const SidePanel = () => {
           </li>
           <li>
             <p>Two</p>
+          </li>
+          <p className='li-label'>User</p>
+          <li>
+            <p>Profile</p>
+          </li>
+          <li>
+            <p>Logout</p>
           </li>
         </ul>
       </div>

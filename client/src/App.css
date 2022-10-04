@@ -21,10 +21,16 @@ min-height: 100vh;
   font-weight: bold;
 }
 .center-list{
-  padding-left: .5rem;
+  padding-left: .75rem;
 }
 .center-list ul{
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.li-label{
+  font-size: .65rem;
+  font-weight: bold;
 }
 /* END OF SIDE PANEL STYLES */
 .main-container{
