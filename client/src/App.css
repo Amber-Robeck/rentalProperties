@@ -64,7 +64,34 @@ min-height: 100vh;
   background-color: darkslategray;
 }
 /* END OF SIDE PANEL STYLES */
+
+/* NAVBAR STYLES */
+.navbar{
+  height: 3rem;
+  border-bottom: 0.5px solid lightgrey;
+  display: flex;
+  align-items: center;
+  font-size: .75rem;
+  color: rgb(94, 91, 91);
+}
+.navbar-container{
+  width: 100%;
+  display: flex;
+  padding: .5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.links{
+  display: flex;
+  align-items: center;
+}
+.link{
+  display: flex;
+  align-items: center;
+  margin: .5rem;
+}
+
+/* END OF NAVBAR STYLES */
 .main-container{
-  background-color: bisque;
   flex: 6;
 }
