@@ -55,4 +55,11 @@ export const updateApartment = async (req, res, next) => {
         next(err);
     }
 };
-export const deleteApartment = async (req, res, next) => { };
+export const deleteApartment = async (req, res, next) => {
+    try {
+        const deletedApartment = await Apartment.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: `Apartment ${deletedApartment.roomNumber} deleted` });
+    } catch (err) {
+        next(err);
+    }
+};
