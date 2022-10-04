@@ -31,6 +31,37 @@ min-height: 100vh;
 .li-label{
   font-size: .65rem;
   font-weight: bold;
+  margin-top: .55rem;
+  color: rgb(129, 128, 128);
+}
+.li-item {
+  display: flex;
+  align-items: center;
+  padding: .25rem;
+  cursor: pointer;
+  color:rgb(94, 91, 91)
+}
+.li-item:hover{
+  background-color: aquamarine;
+}
+.bottom-options{
+  display: flex;
+  align-items: center;
+  margin: .5rem;
+}
+.options{
+  width: 1rem;
+  height: 1rem;
+  margin: .5rem;
+  border-radius: .25rem;
+  border: 1px solid aquamarine;
+  cursor: pointer;
+}
+.options:nth-child(1){
+  background-color: azure;
+}
+.options:nth-child(2){
+  background-color: darkslategray;
 }
 /* END OF SIDE PANEL STYLES */
 .main-container{

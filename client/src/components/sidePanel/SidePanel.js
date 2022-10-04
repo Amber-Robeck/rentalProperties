@@ -8,24 +8,27 @@ const SidePanel = () => {
         <ul>
           <p className='li-label'>Main</p>
           <li>
-            <p>Dashboard</p>
+            <p className='li-item'>Dashboard</p>
           </li>
           <li>
-            <p>One</p>
+            <p className='li-item'>One</p>
           </li>
           <li>
-            <p>Two</p>
+            <p className='li-item'>Two</p>
           </li>
           <p className='li-label'>User</p>
           <li>
-            <p>Profile</p>
+            <p className='li-item'>Profile</p>
           </li>
           <li>
-            <p>Logout</p>
+            <p className='li-item'>Logout</p>
           </li>
         </ul>
       </div>
-      <div className='bottom-options'>Options</div>
+      <div className='bottom-options'>
+        <div className='options'></div>
+        <div className='options'></div>
+      </div>
     </div>
   )
 }
