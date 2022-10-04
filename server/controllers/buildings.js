@@ -16,6 +16,11 @@ export const getBuilding = async (req, res, next) => {
         const singleBuilding = await Building.findOne(
             { _id: req.params.id }
         );
+        if (!singleBuilding) {
+            res
+                .status(404)
+                .json("Unable to find a building with that information")
+        }
         res.status(200).json(singleBuilding);
     } catch (err) {
         next(err);
@@ -41,6 +46,11 @@ export const updateBuilding = async (req, res, next) => {
             { $set: req.body },
             { new: true }
         );
+        if (!updatedBuilding) {
+            res
+                .status(404)
+                .json("Unable to find a building with that information")
+        }
         res.status(200).json(updatedBuilding);
     } catch (err) {
         next(err);
@@ -51,6 +61,11 @@ export const updateBuilding = async (req, res, next) => {
 export const deleteBuilding = async (req, res, next) => {
     try {
         const deletedBuilding = await Building.findByIdAndDelete(req.params.id);
+        if (!deletedBuilding) {
+            res
+                .status(404)
+                .json("Unable to find a building with that information")
+        }
         res.status(200).json({ message: `Building ${deletedBuilding.name} deleted` });
     } catch (err) {
         next(err);

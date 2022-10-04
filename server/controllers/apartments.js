@@ -15,6 +15,9 @@ export const getApartment = async (req, res, next) => {
         const singleApartment = await Apartment.findOne(
             { _id: req.params.id }
         );
+        if (!singleApartment) {
+            res.status(404).json("Unable to find an apartment with that information")
+        }
         res.status(200).json(singleApartment);
     } catch (err) {
         next(err);
@@ -62,6 +65,9 @@ export const updateApartment = async (req, res, next) => {
 export const deleteApartment = async (req, res, next) => {
     try {
         const deletedApartment = await Apartment.findByIdAndDelete(req.params.id);
+        if (!deletedApartment) {
+            res.status(404).json("Unable to find an apartment with that information")
+        }
         res.status(200).json({ message: `Apartment ${deletedApartment.roomNumber} deleted` });
     } catch (err) {
         next(err);
@@ -76,6 +82,9 @@ export const toggleRented = async (req, res, next) => {
             { _id: req.params.id },
             [{ "$set": { "isRented": { "$eq": [false, "$isRented"] } } }],
             { new: true });
+        if (!isRented) {
+            res.status(404).json("Unable to find an apartment with that information")
+        }
         res.status(200).json({ message: `Apartment ${isRented.roomNumber} updated` });
     } catch (err) {
         next(err);
