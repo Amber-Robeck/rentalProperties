@@ -39,6 +39,8 @@ export const createApartment = async (req, res, next) => {
         next(err);
     }
 };
+
+//Put update apartment, admin only route!
 export const updateApartment = async (req, res, next) => {
     try {
         const updatedApartment = await Apartment.findByIdAndUpdate(
@@ -55,6 +57,8 @@ export const updateApartment = async (req, res, next) => {
         next(err);
     }
 };
+
+// Delete apartment, admin only route!
 export const deleteApartment = async (req, res, next) => {
     try {
         const deletedApartment = await Apartment.findByIdAndDelete(req.params.id);
