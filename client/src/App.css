@@ -102,6 +102,7 @@ min-height: 100vh;
 }
 .widget{
   display: flex;
+  flex-wrap: wrap;
   flex: 1;
   justify-content: space-between;
   border: 0.5px solid lightgrey;

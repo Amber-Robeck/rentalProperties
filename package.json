@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
     "dev": "nodemon server/index.js",
     "install": "cd server && npm i",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Amber-Robeck/rentalProperties/issues"
   },
-  "homepage": "https://github.com/Amber-Robeck/rentalProperties#readme"
+  "homepage": "https://github.com/Amber-Robeck/rentalProperties#readme",
+  "dependencies": {
+    "concurrently": "^7.4.0"
+  }
 }
