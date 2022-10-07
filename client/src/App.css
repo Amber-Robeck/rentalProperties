@@ -110,3 +110,15 @@ min-height: 100vh;
   height: 10rem;
 }
 
+/* LOGIN PAGE STYLES */
+.login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
+}
+/* END OF LOGIN PAGE STYLES */
+

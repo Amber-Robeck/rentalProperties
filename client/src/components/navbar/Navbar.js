@@ -13,7 +13,7 @@ const Navbar = () => {
                     <div className='link'>THREE</div>
                     <div className='link'>FOUR</div>
                     <div className='link'>FIVE</div>
-                    <div className='link'>SIX</div>
+                    <div className='link'><a href='/login'>login</a></div>
                 </div>
             </div>
         </nav>
