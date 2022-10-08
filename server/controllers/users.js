@@ -34,6 +34,7 @@ export const getUser = async (req, res, next) => {
 // Post create user, no auth route!
 export const createUser = async (req, res, next) => {
     try {
+        console.log(req.body.username)
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -58,6 +59,7 @@ export const createUser = async (req, res, next) => {
 // Post login user, no auth route!
 export const loginUser = async (req, res, next) => {
     try {
+        console.log(req.body)
         const user = await User.findOne({ username: req.body.username });
         if (!user) return res
             .status(400)
