@@ -8,6 +8,7 @@ import {
 import Homepage from './pages/home/Homepage.js';
 import Login from './pages/login/Login.js';
 import Dashboard from './pages/dashboard/Dashboard.js';
+import Signup from './pages/signup/Signup.js';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/">
             <Route index element={<Homepage />} />
             <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
             <Route path="dashboard" element={<Dashboard />} />
           </Route >
 
