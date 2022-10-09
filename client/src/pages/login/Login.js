@@ -18,25 +18,21 @@ const Login = () => {
         //         'Content-Type': 'application/json'
         //     }
         // };
-        const user =
-        {
-            username: "adminadmin4",
-            email: "admin4@test.com",
-            password: "adminadmin",
-            city: "Thisone",
-            address: "333 Test Lane",
-            isAdmin: true
-        }
-        // await loginUser({ username: email, password: password })
-        await axios.post('http://localhost:3001/api/users/login', { username: username, password: password })
-            // .then(data => data.json())
-            .then(data => console.log(data))
+        // const user =
+        // {
+        //     username: "adminadmin4",
+        //     email: "admin4@test.com",
+        //     password: "adminadmin",
+        //     city: "Thisone",
+        //     address: "333 Test Lane",
+        //     isAdmin: true
+        // }
+        await loginUser({ username: username, password: password });
     };
 
     function loginUser(credentials) {
-        return axios.post('http://localhost:3001/users/login', JSON.stringify(credentials))
-            .then(data => data.json())
-            .then(data => console.log(data))
+        return axios.post('http://localhost:3001/api/users/login', credentials)
+            .then(data => console.log("logged in user", data));
     };
 
     return (
@@ -59,6 +55,7 @@ const Login = () => {
                 <button type="submit" disabled={!validateForm()}>
                     Login
                 </button>
+                <p>Don't have an account? <a href="/signup">Sign-up</a> instead.</p>
             </form>
         </div >
 
