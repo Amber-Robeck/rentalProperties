@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import axios from 'axios'
 
 const Login = () => {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     // Checks that all fields have input
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return username.length > 0 && password.length > 0;
     };
 
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log(JSON.stringify({ username: email, password: password }));
+        console.log(JSON.stringify({ username: username, password: password }));
         // const customConfig = {
         //     headers: {
         //         'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ const Login = () => {
             isAdmin: true
         }
         // await loginUser({ username: email, password: password })
-        await axios.post('http://localhost:3001/api/users', user)
+        await axios.post('http://localhost:3001/api/users/login', { username: username, password: password })
             // .then(data => data.json())
             .then(data => console.log(data))
     };
@@ -43,12 +43,12 @@ const Login = () => {
 
         <div className="login">
             <form className="login-form" onSubmit={(e) => { handleSubmit(e) }}>
-                <label>Email</label>
+                <label>Username</label>
                 <input
                     autoFocus
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
                 <label>Password</label>
                 <input
