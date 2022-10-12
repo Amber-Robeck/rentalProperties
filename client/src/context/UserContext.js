@@ -1,7 +1,8 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
+//INITIAL_STATE grab user from localstorage if one exists otherwise null
 const INITIAL_STATE = {
-    user: null,
+    user: JSON.parse(localStorage.getItem("user")) || null,
     error: null
 };
 
@@ -31,10 +32,15 @@ const UserReducer = (state, action) => {
 export const UserContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(UserReducer, INITIAL_STATE)
 
+    //save user to local storage for auth
+    useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(state.user))
+    }, [state.user])
     return (
         <UserContext.Provider
             value={{
-                state,
+                user: state.user,
+                error: state.error,
                 dispatch
             }}>
             {children}
