@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import axios from 'axios'
+import React, { useContext, useState } from "react";
+import axios from "axios"
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const [newUser, setNewUser] = useState({
@@ -9,16 +11,9 @@ const Signup = () => {
         city: "",
         address: ""
     });
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
 
-    // //  username: req.body.username,
-    // email: req.body.email,
-    // password: hash,
-    // city: req.body.city,
-    // address: req.body.address,
-    // isAdmin: req.body.isAdmin
-
+    const { user, loading, error, dispatch } = useContext(UserContext);
+    const navPage = useNavigate();
     // Checks that all fields have input
     function validateForm() {
         return (
@@ -32,10 +27,23 @@ const Signup = () => {
 
     async function handleSubmit(event) {
         event.preventDefault();
+        try {
+            const response = await createUser(newUser);
+            dispatch({
+                type: "CREATE_USER",
+                payload: response.data
+            });
+            navPage("/dashboard")
+        } catch (error) {
+            dispatch({
+                type: "LOGIN_FAILURE",
+                payload: error.response.data
+            });
+        };
 
-        await createUser(newUser);
-        console.log(newUser)
+        // await createUser(newUser);
     };
+    console.log(user)
 
     function createUser(credentials) {
         return axios.post('http://localhost:3001/api/users', credentials);
@@ -89,10 +97,11 @@ const Signup = () => {
                     value={newUser.address}
                     onChange={(e) => handleChange(e)}
                 />
-                <button type="submit" disabled={!validateForm()}>
+                <button type="submit" disabled={!validateForm() || loading}>
                     Sign-up
                 </button>
                 <p>Already have an account? <a href="/login">Log in</a> instead.</p>
+                {error && <p>{error}</p>}
             </form>
         </div >
 

@@ -25,6 +25,11 @@ const UserReducer = (state, action) => {
                 user: null,
                 error: null
             };
+        case "CREATE_USER":
+            return {
+                user: action.payload,
+                error: null
+            };
         default:
             return state;
     };
