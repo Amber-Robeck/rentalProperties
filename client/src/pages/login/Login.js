@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [userLogin, setUserLogin] = useState({
-        username: undefined,
-        password: undefined
+        username: "",
+        password: ""
     });
 
     const { user, loading, error, dispatch } = useContext(UserContext);
