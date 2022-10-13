@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
-import axios from 'axios'
+import axios from "axios"
 import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [userLogin, setUserLogin] = useState({
@@ -9,14 +10,16 @@ const Login = () => {
     });
 
     const { user, loading, error, dispatch } = useContext(UserContext);
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
+    const navPage = useNavigate();
 
     // Checks that all fields have input
-    // function validateForm() {
-    //     return userLogin?.username.length > 0 && userLogin?.password.length > 0;
-    // };
-
+    const validateForm = () => {
+        return userLogin.username?.length > 0 && userLogin.password?.length > 0;
+    };
+    // if login success write user to local storage nav to dashboard
+    //TODO**Check if user is admin before routing to dashboard else route to non-admin home
+    // otherwise display error to user
+    //adminadmin4 adminadmin
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -24,39 +27,23 @@ const Login = () => {
             dispatch({
                 type: "LOGIN_SUCCESS",
                 payload: response.data
-            })
+            });
+            navPage("/dashboard")
         } catch (error) {
             dispatch({
                 type: "LOGIN_FAILURE",
                 payload: error.response.data
-            })
-        }
-        // console.log(JSON.stringify({ username: username, password: password }));
-        // const customConfig = {
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // };
-        // const user =
-        // {
-        //     username: "adminadmin4",
-        //     email: "admin4@test.com",
-        //     password: "adminadmin",
-        //     city: "Thisone",
-        //     address: "333 Test Lane",
-        //     isAdmin: true
-        // }
-        // await loginUser({ username: username, password: password });
+            });
+        };
     };
 
-    function loginUser(credentials) {
+    const loginUser = (credentials) => {
         return axios.post('http://localhost:3001/api/users/login', credentials);
-
-        // .then(data => console.log("logged in user", data));
     };
+
     const handleChange = (event) => {
         setUserLogin((prev) => ({ ...prev, [event.target.id]: event.target.value }));
-        console.log(userLogin)
+        // console.log(userLogin)
     }
     console.log(user)
     return (
@@ -79,11 +66,12 @@ const Login = () => {
                     onChange={(e) => handleChange(e)}
                 />
                 <button type="submit"
-                //  disabled={!validateForm()}
+                    disabled={!validateForm() || loading}
                 >
                     Login
                 </button>
                 <p>Don't have an account? <a href="/signup">Sign-up</a> instead.</p>
+                {error && <p>{error}</p>}
             </form>
         </div >
 
