@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { UserContext } from "../../context/UserContext";
+
 
 const Widget = () => {
+    const { user } = useContext(UserContext);
+    console.log(user)
+    const userWidget = [
+        {
+            title: "this thing",
+            number: 3,
+            link: "www.google.com",
+            info: "something",
+            alt: "alt icon",
+            icon: ""
+        }
+    ]
     return (
         <div className="widget">
+
             <div className='widget-left'>
                 <p className='widget-title'>Title of widget</p>
                 <p className='widget-number'>Number of widget</p>
