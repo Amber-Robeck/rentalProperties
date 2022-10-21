@@ -11,17 +11,23 @@ const SidePanel = () => {
             <p className='li-item'>Dashboard</p>
           </li>
           <li>
-            <p className='li-item'>One</p>
+            <p className='li-item'>Buildings</p>
           </li>
           <li>
-            <p className='li-item'>Two</p>
+            <p className='li-item'>Apartments</p>
+          </li>
+          <li>
+            <p className='li-item'>Tenants</p>
           </li>
           <p className='li-label'>User</p>
           <li>
             <p className='li-item'>Profile</p>
           </li>
           <li>
-            <p className='li-item'>Logout</p>
+            <p className='li-item'>Messages</p>
+          </li>
+          <li>
+            <p className='li-item'>Tickets</p>
           </li>
         </ul>
       </div>
