@@ -113,12 +113,25 @@ min-height: 100vh;
 /* LOGIN SIGNUP PAGE STYLES */
 .login, .signup{
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
+  min-height: 100vh;
 }
 .login-form, .signup-form{
   display: flex;
   flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  /* justify-content: center; */
+}
+.login-form input, .signup-form input{
+  border-radius: .35rem;
+  margin-bottom: .5rem;
+}
+.login-form button, .signup-form button{
+max-width: 75%;
+min-width: 55%;
+align-self: center;
 }
 /* END OF LOGIN PAGE STYLES */
 
