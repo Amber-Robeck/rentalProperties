@@ -72,7 +72,7 @@ export const loginUser = async (req, res, next) => {
 
         const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET)
         //Destructuring user to send back user without password or isAdmin
-        const { password, isAdmin, ...restOfUser } = user._doc;
+        const { password, ...restOfUser } = user._doc;
         res
             .cookie("access_token", token, { httpOnly: true })
             .status(200).json({ ...restOfUser });
